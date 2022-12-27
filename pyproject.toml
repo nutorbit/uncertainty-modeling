@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "uncertainty-modeling"
+version = "0.1.0"
+description = ""
+authors = ["nutorbit <nutorbitx@gmail.com>"]
+readme = "README.md"
+packages = [{include = "uncertainty_modeling"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+numpy = "^1.24.0"
+pandas = "^1.5.2"
+matplotlib = "^3.6.2"
+seaborn = "^0.12.1"
+jupyterlab = "^3.5.2"
+category-encoders = "^2.5.1.post0"
+catboost = "^1.1.1"
+xgboost = "^1.7.2"
+lightgbm = "^3.3.3"
+imbalanced-learn = "^0.10.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

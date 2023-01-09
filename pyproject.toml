@@ -18,6 +18,10 @@ catboost = "^1.1.1"
 xgboost = "^1.7.2"
 lightgbm = "^3.3.3"
 imbalanced-learn = "^0.10.0"
+jax = "^0.4.1"
+jaxlib = "^0.4.1"
+dm-haiku = "^0.0.9"
+optax = "^0.1.4"
 
 
 [build-system]

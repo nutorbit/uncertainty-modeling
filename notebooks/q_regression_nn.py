@@ -75,6 +75,7 @@ class QuantileNN:
         )
     
     def fit(self, X: jnp.ndarray, y: jnp.ndarray, epoch: int = 100) -> jnp.ndarray:
+        # TODO: add batch training
         rs = []
         for _ in range(epoch):
             r = []

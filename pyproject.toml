@@ -22,6 +22,9 @@ jax = "^0.4.1"
 jaxlib = "^0.4.1"
 dm-haiku = "^0.0.9"
 optax = "^0.1.4"
+tqdm = "^4.64.1"
+pandarallel = "^1.6.3"
+ipywidgets = "^8.0.4"
 
 
 [build-system]

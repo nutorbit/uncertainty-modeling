@@ -4,9 +4,11 @@ An implementation of Neural Quantile Regression.
 
 import jax
 import optax
+import pandas as pd
 import jax.numpy as jnp
 import haiku as hk
 
+from typing import Tuple
 from collections import namedtuple
 from dataclasses import dataclass
 
@@ -18,7 +20,7 @@ class MLP(hk.Module):
     def __call__(self, x: jnp.ndarray) -> jnp.ndarray:
         for n in self.hiddens:
             x = hk.Linear(n)(x)
-            # x = jax.nn.leaky_relu(x)
+            x = jax.nn.relu(x)
         x = hk.Linear(1)(x)
         return x
     
@@ -76,6 +78,14 @@ class QuantileNN:
     
     def fit(self, X: jnp.ndarray, y: jnp.ndarray, epoch: int = 100) -> jnp.ndarray:
         # TODO: add batch training
+        # TODO: add dropout and regularizer
+
+        if isinstance(X, pd.DataFrame):
+            X = X.values
+            
+        if isinstance(y, pd.DataFrame) or isinstance(y, pd.Series):
+            y = y.values
+        
         rs = []
         for _ in range(epoch):
             r = []
@@ -98,6 +108,9 @@ class QuantileNN:
         return jnp.array(rs)
     
     def predict(self, X: jnp.ndarray, median: bool = True) -> jnp.ndarray:
+        if isinstance(X, pd.DataFrame):
+            X = X.values
+        
         rs = []
         for param in self.params:
             pred = self.model.apply(param, X)

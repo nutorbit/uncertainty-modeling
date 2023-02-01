@@ -10,7 +10,7 @@ def plot_reliability_diagram(
     bins: Optional[List[float]] = None,
     n_bins: int = 20,
     figsize: Tuple[int, int] = (15, 5)
-):
+) -> float:
     """
     Plot a reliability diagram with frequency plot
     
@@ -20,6 +20,9 @@ def plot_reliability_diagram(
         bins: custom bins
         n_bins: number of bins
         figsize: figure size
+        
+    Returns:
+        mean square error between empirical probability and predicted probability
     """
 
     if bins is None:
@@ -36,6 +39,8 @@ def plot_reliability_diagram(
     prob_pred = bin_sums[nonzero] / bin_total[nonzero]
     freq = bin_total[nonzero]
     
+    mse = ((prob_true - prob_pred) ** 2).mean()
+    
     # plot
     fig, ax = plt.subplots(figsize=figsize, ncols=2)
     _ = ax[0].plot([0, 1], [0, 1], "k:", label="Perfectly calibrated")
@@ -45,8 +50,9 @@ def plot_reliability_diagram(
     _ = ax[0].set_title("Reliability diagram")
     _ = ax[0].legend(loc="lower right")
     
-    _ = ax[1].hist(prob_pred)
+    _ = ax[1].hist(y_prob)
     _ = ax[1].set_xlabel("Predicted")
     _ = ax[1].set_ylabel("Frequency")
     _ = ax[1].set_title("Frequency of the predicted probability")
     
+    return mse

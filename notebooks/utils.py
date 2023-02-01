@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from typing import Optional, List, Tuple 
 
 
-def plot_calibration_curve(
+def plot_reliability_diagram(
     y_true: np.ndarray, 
     y_prob: np.ndarray, 
     bins: Optional[List[float]] = None,
@@ -12,7 +12,7 @@ def plot_calibration_curve(
     figsize: Tuple[int, int] = (15, 5)
 ):
     """
-    Plot a calibration curve with frequency plot
+    Plot a reliability diagram with frequency plot
     
     Args:
         y_true: binary array (0 or 1)
